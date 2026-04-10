@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusAI — Intelligent Chat</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== APP WRAPPER ===== -->
+  <div id="app-wrapper">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon"><i class="fa-solid fa-hexagon-nodes"></i></div>
+          <span class="brand-name">NexusAI</span>
+        </div>
+        <button id="new-chat-btn" class="new-chat-btn" title="New Chat">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+      </div>
+
+      <div class="sidebar-section-label">Recent</div>
+
+      <nav class="chat-history" id="chat-history">
+        <div class="history-item active">
+          <i class="fa-regular fa-message"></i>
+          <span>New conversation</span>
+        </div>
+        <div class="history-item">
+          <i class="fa-regular fa-message"></i>
+          <span>Build a REST API with Node</span>
+        </div>
+        <div class="history-item">
+          <i class="fa-regular fa-message"></i>
+          <span>Python data visualization tips</span>
+        </div>
+        <div class="history-item">
+          <i class="fa-regular fa-message"></i>
+          <span>Explain transformer architecture</span>
+        </div>
+        <div class="history-item">
+          <i class="fa-regular fa-message"></i>
+          <span>Write a cover letter for PM role</span>
+        </div>
+        <div class="history-item">
+          <i class="fa-regular fa-message"></i>
+          <span>SQL query optimization guide</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+          <span id="theme-label">Dark mode</span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar">
+            <span>S</span>
+          </div>
+          <div class="user-info">
+            <div class="user-name">Student</div>
+            <div class="user-plan">Free Plan</div>
+          </div>
+          <button class="user-options" title="Options"><i class="fa-solid fa-ellipsis"></i></button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MOBILE OVERLAY ===== -->
+    <div id="sidebar-overlay"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+
+      <!-- Top bar (mobile) -->
+      <header id="topbar">
+        <button id="hamburger-btn" title="Open sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="topbar-brand">
+          <div class="brand-icon sm"><i class="fa-solid fa-hexagon-nodes"></i></div>
+          <span>NexusAI</span>
+        </div>
+        <div class="topbar-right">
+          <button id="export-btn" title="Export chat">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- ===== MESSAGES AREA ===== -->
+      <section id="chat-container">
+        <div id="messages-wrapper">
+
+          <!-- Welcome Screen -->
+          <div id="welcome-screen">
+            <div class="welcome-inner">
+              <div class="welcome-logo">
+                <div class="logo-ring"></div>
+                <i class="fa-solid fa-hexagon-nodes welcome-icon"></i>
+              </div>
+              <h1 class="welcome-title">What can I help with?</h1>
+              <p class="welcome-subtitle">Ask me anything — I'm fast, precise, and always learning.</p>
+
+              <div class="suggestion-grid" id="suggestion-grid">
+                <div class="suggestion-card" data-prompt="Explain quantum computing in simple terms">
+                  <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
+                  <div class="card-body-text">
+                    <div class="card-title">Explain quantum computing</div>
+                    <div class="card-desc">Break down complex concepts simply</div>
+                  </div>
+                </div>
+                <div class="suggestion-card" data-prompt="Write a Python function to parse JSON from an API response">
+                  <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                  <div class="card-body-text">
+                    <div class="card-title">Write Python code</div>
+                    <div class="card-desc">Parse JSON from an API response</div>
+                  </div>
+                </div>
+                <div class="suggestion-card" data-prompt="Give me 5 tips to improve my resume for a tech job">
+                  <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+                  <div class="card-body-text">
+                    <div class="card-title">Improve my resume</div>
+                    <div class="card-desc">5 tips for landing a tech role</div>
+                  </div>
+                </div>
+                <div class="suggestion-card" data-prompt="What are the latest trends in generative AI for 2025?">
+                  <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                  <div class="card-body-text">
+                    <div class="card-title">AI trends 2025</div>
+                    <div class="card-desc">Latest in generative intelligence</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages will be injected here -->
+          <div id="messages-list"></div>
+
+          <!-- Typing indicator -->
+          <div id="typing-indicator" class="message ai-message typing-msg" style="display:none;">
+            <div class="message-avatar ai-avatar">
+              <i class="fa-solid fa-hexagon-nodes"></i>
+            </div>
+            <div class="message-bubble">
+              <div class="typing-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== INPUT AREA ===== -->
+      <footer id="input-area">
+        <div class="input-container">
+          <button class="input-action-btn attach-btn" title="Attach file">
+            <i class="fa-solid fa-paperclip"></i>
+          </button>
+          <textarea
+            id="message-input"
+            placeholder="Message NexusAI…"
+            rows="1"
+            maxlength="4000"
+          ></textarea>
+          <button class="input-action-btn send-btn" id="send-btn" title="Send message" disabled>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+        <p class="input-footer-text">
+          NexusAI can make mistakes. Verify important info.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Sound effects (hidden) -->
+  <audio id="send-sound" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=" preload="auto"></audio>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- App JS -->
+  <script src="js/chat.js"></script>
+</body>
+</html>
